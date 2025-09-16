@@ -1,12 +1,11 @@
-import { getCommands } from "./commands.js";
+import {State} from "./state.js";
 
-export function commandHelp() {
-    const availableCommands = getCommands();
+export async function commandHelp(state: State) {
     console.log("Welcome to the Pokedex!");
     console.log(`Usage:\n`);
-    for (let key in availableCommands) {
+    for (let key in state.registry) {
         console.log(
-            `${availableCommands[key].name}: ${availableCommands[key].description}`
+            `${state.registry[key].name}: ${state.registry[key].description}`
         );
     }
 }
