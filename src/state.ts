@@ -1,20 +1,19 @@
 import {createInterface, type Interface} from "readline";
 import {getCommands} from "./commands.js";
-import {PokeAPI, ShallowLocations} from "./pokeapi.js";
+import {PokeAPI} from "./pokeapi.js";
 
 export type CLICommand = {
     name: string;
     description: string;
-    callback: (state: State) => Promise<void>;
+    callback: (state: State, ...args: string[]) => Promise<void>;
 };
 
 export type State = {
     readline: Interface;
     registry: Record<string, CLICommand>;
     api: PokeAPI;
-    prevLocationsIndex?: number;
-    nextLocationsIndex: number;
-    storedLocations: ShallowLocations[];
+    prevLocationsURL: string | null;
+    nextLocationsURL: string | null;
 }
 
 export function initState(): State {
@@ -27,7 +26,7 @@ export function initState(): State {
         }),
         registry: getCommands(),
         api: api,
-        nextLocationsIndex: 1,
-        storedLocations: [],
+        prevLocationsURL: null,
+        nextLocationsURL: "https://pokeapi.co/api/v2/location-area/",
     };
 }

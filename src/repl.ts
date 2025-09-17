@@ -13,12 +13,12 @@ export async function startREPL(state: State) {
                 const userCommand = cleanedInput[0];
                 const userArgs = cleanedInput.slice(1);
                 if (userCommand in state.registry) {
-                    await state.registry[userCommand].callback(state);
+                    await state.registry[userCommand].callback(state, ...userArgs);
                     }
                 }
         }
         catch (error) {
-            console.error(error);
+            console.error(`Error: ${error}`);
         }
         state.readline.prompt();
     });
