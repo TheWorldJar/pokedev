@@ -1,10 +1,11 @@
-import {commandExit} from "./command_exit.js";
-import {commandHelp} from "./command_help.js";
-import {commandMap, commandMapb} from "./command_map.js";
-import {CLICommand} from "./state.js";
-import {commandExplore} from "./command_explore.js";
-import {commandCatch} from "./command_catch.js";
-import {commandPokedex} from "./command_pokedex.js";
+import {commandExit} from "./command_exit";
+import {commandHelp} from "./command_help";
+import {commandMap, commandMapb} from "./command_map";
+import {CLICommand} from "../state";
+import {commandExplore} from "./command_explore";
+import {commandCatch} from "./command_catch";
+import {commandPokedex} from "./command_pokedex";
+import {commandInspect} from "./command_inspect";
 
 export function getCommands(): Record<string, CLICommand> {
     return {
@@ -43,6 +44,11 @@ export function getCommands(): Record<string, CLICommand> {
             description: "Displays the user's Pokedex",
             callback: commandPokedex,
         },
+        inspect: {
+            name: "inspect",
+            description: "Inspects a Pokemon in the Pokedex",
+            callback: commandInspect,
+        }
         // can add more commands here.
     };
 }

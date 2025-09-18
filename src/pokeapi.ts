@@ -27,8 +27,13 @@ export class PokeAPI {
         return this.#request(fullURL);
     }
 
-    async fetchPokemon(pokemon: string): Promise<Pokemon> {
+    async fetchPokemonSpecies(pokemon: string): Promise<Pokemon> {
         const fullURL = `${PokeAPI.baseURL}pokemon-species/${pokemon}`;
+        return this.#request(fullURL);
+    }
+
+    async fetchPokemonFull(pokemon: string): Promise<any> {
+        const fullURL = `${PokeAPI.baseURL}pokemon/${pokemon}`;
         return this.#request(fullURL);
     }
 }
